@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartStock - Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>📦 SmartStock</h2>
+    <p class="subtitle">STATIONERY INVENTORY</p>
+
+    <nav>
+        <a href="#dashboard">▦ Dashboard</a>
+        <a href="#inventory">📚 Inventory</a>
+        <a href="#purchase">➕ Stock Purchase</a>
+        <a href="#sales">🛒 Sales</a>
+        <a href="#alerts">🔔 Stock Alerts</a>
+        <a href="#demand">📈 Demand Analysis</a>
+    </nav>
+
+    <div class="sidebar-footer">
+        SmartStock v1.0
+    </div>
+</div>
+
+<main>
+    <header>
+        <div>
+            <h1>Inventory Dashboard</h1>
+            <p>Welcome! Manage your stationery shop easily.</p>
+        </div>
+        <span id="date"></span>
+    </header>
+
+    <section class="stats" id="dashboard">
+        <div class="stat-card purple">
+            <p>Total Products</p>
+            <h2 id="totalProducts">0</h2>
+            <small>Different products</small>
+        </div>
+
+        <div class="stat-card blue">
+            <p>Total Stock</p>
+            <h2 id="totalStock">0</h2>
+            <small>Available units</small>
+        </div>
+
+        <div class="stat-card orange">
+            <p>Low Stock Items</p>
+            <h2 id="lowStock">0</h2>
+            <small>Need restocking</small>
+        </div>
+
+        <div class="stat-card green">
+            <p>High Demand</p>
+            <h2 id="highDemand">0</h2>
+            <small>Trending products</small>
+        </div>
+    </section>
+
+    <section class="panel" id="inventory">
+        <div class="section-heading">
+            <div>
+                <h2>Product Inventory</h2>
+                <p>Manage your stationery products</p>
+            </div>
+            <button onclick="showForm()">+ Add Product</button>
+        </div>
+
+        <input type="text" id="search" placeholder="Search products..." oninput="displayProducts()">
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Stock</th>
+                        <th>Minimum Stock</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="productTable"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="forms-grid">
+
+        <div class="panel">
+            <h2>Add New Product</h2>
+            <p>Enter newly purchased stationery products.</p>
+
+            <form id="productForm">
+                <label>Product Name</label>
+                <input type="text" id="productName" placeholder="Enter product name" required>
+
+                <label>Category</label>
+                <select id="category">
+                    <option>Writing</option>
+                    <option>Paper</option>
+                    <option>Art Supplies</option>
+                    <option>Accessories</option>
+                </select>
+
+                <label>Initial Quantity</label>
+                <input type="number" id="quantity" min="0" required>
+
+                <label>Minimum Stock Level</label>
+                <input type="number" id="minimum" min="0" required>
+
+                <button type="submit">Add Product</button>
+            </form>
+        </div>
+
+        <div class="panel" id="purchase">
+            <h2>Stock Purchase</h2>
+            <p>Update stock when new products arrive.</p>
+
+            <form id="purchaseForm">
+                <label>Select Product</label>
+                <select id="purchaseProduct" required></select>
+
+                <label>Purchased Quantity</label>
+                <input type="number" id="purchaseQuantity" min="1" required>
+
+                <button type="submit">Update Stock</button>
+            </form>
+
+            <div class="info-box">
+                💡 Purchased quantities are automatically added to existing stock.
+            </div>
+        </div>
+
+    </section>
+
+    <section class="forms-grid">
+
+        <div class="panel" id="sales">
+            <h2>Record Sales</h2>
+            <p>Record sold products to update inventory.</p>
+
+            <form id="salesForm">
+                <label>Select Product</label>
+                <select id="salesProduct" required></select>
+
+                <label>Quantity Sold</label>
+                <input type="number" id="salesQuantity" min="1" required>
+
+                <button type="submit">Record Sale</button>
+            </form>
+        </div>
+
+        <div class="panel" id="alerts">
+            <h2>🔔 Stock Alerts</h2>
+            <p>Products that need restocking.</p>
+            <div id="alertList"></div>
+        </div>
+
+    </section>
+
+    <section class="panel" id="demand">
+        <h2>📈 Demand Analysis</h2>
+        <p>Products with increasing sales demand.</p>
+        <div id="demandList"></div>
+    </section>
+
+    <footer>
+        SmartStock © 2026 | Smart Inventory Management System
+    </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
